@@ -586,27 +586,6 @@
     }
   });
 
-  // --- STICKY CTA BAR ---
-  const stickyCTA = document.createElement('div');
-  stickyCTA.className = 'sticky-cta';
-  stickyCTA.innerHTML = `
-    <div class="sticky-cta__content">
-      <span class="sticky-cta__text">
-        <strong>🎯 Limited Time:</strong> First month FREE for new properties!
-      </span>
-      <a href="contact.html" class="sticky-cta__btn">Claim Offer →</a>
-    </div>
-  `;
-  document.body.appendChild(stickyCTA);
-
-  // Show sticky CTA after scrolling past hero
-  let ctaShown = false;
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 600 && !ctaShown) {
-      stickyCTA.classList.add('visible');
-      ctaShown = true;
-    }
-  });
 
   // --- SOCIAL PROOF TOAST NOTIFICATIONS ---
   const toastMessages = [
