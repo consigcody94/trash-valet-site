@@ -87,13 +87,7 @@
       const freq = parseInt(frequency.value);
       const type = propertyType.value;
 
-      // Volume discounts
-      let discount = 1;
-      if (units >= 200) discount = 0.85;
-      else if (units >= 100) discount = 0.90;
-      else if (units >= 50) discount = 0.95;
-
-      const price = units * basePricePerUnit * frequencyMultipliers[freq] * propertyMultipliers[type] * discount;
+      const price = units * basePricePerUnit * frequencyMultipliers[freq] * propertyMultipliers[type];
 
       return Math.round(price);
     }
