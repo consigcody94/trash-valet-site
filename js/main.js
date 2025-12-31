@@ -251,24 +251,45 @@
     const zipInput = document.getElementById('zipInput');
     const zipResult = document.getElementById('zipResult');
 
-    // Florida ZIP code ranges we service
+    // Florida ZIP code ranges we service (matching areas.html)
     const serviceableZips = [
-      // Orlando area
-      { min: 32801, max: 32899 },
-      { min: 34701, max: 34799 },
-      // Tampa area
-      { min: 33601, max: 33699 },
-      { min: 34601, max: 34699 },
-      // Jacksonville area
-      { min: 32099, max: 32299 },
-      // Miami area
-      { min: 33101, max: 33299 },
-      // Fort Lauderdale area
-      { min: 33301, max: 33399 },
-      // West Palm Beach area
-      { min: 33401, max: 33499 },
-      // St. Petersburg / Clearwater
-      { min: 33701, max: 33799 },
+      // Central Florida - Orlando area
+      { min: 32801, max: 32899, city: 'Orlando' },
+      { min: 32789, max: 32792, city: 'Winter Park' },
+      { min: 34741, max: 34759, city: 'Kissimmee' },
+      { min: 32701, max: 32714, city: 'Altamonte Springs' },
+      { min: 32746, max: 32746, city: 'Lake Mary' },
+      { min: 32771, max: 32773, city: 'Sanford' },
+      { min: 34711, max: 34715, city: 'Clermont' },
+      { min: 32114, max: 32129, city: 'Daytona Beach' },
+
+      // Tampa Bay Area
+      { min: 33601, max: 33699, city: 'Tampa' },
+      { min: 33701, max: 33799, city: 'St. Petersburg' },
+      { min: 33755, max: 33769, city: 'Clearwater' },
+      { min: 33510, max: 33511, city: 'Brandon' },
+      { min: 33801, max: 33815, city: 'Lakeland' },
+      { min: 33543, max: 33545, city: 'Wesley Chapel' },
+      { min: 34230, max: 34243, city: 'Sarasota' },
+      { min: 34201, max: 34212, city: 'Bradenton' },
+
+      // South Florida
+      { min: 33101, max: 33299, city: 'Miami' },
+      { min: 33301, max: 33399, city: 'Fort Lauderdale' },
+      { min: 33401, max: 33499, city: 'West Palm Beach' },
+      { min: 33427, max: 33499, city: 'Boca Raton' },
+      { min: 33019, max: 33029, city: 'Hollywood' },
+      { min: 33065, max: 33077, city: 'Coral Springs' },
+      { min: 33023, max: 33029, city: 'Pembroke Pines' },
+      { min: 33030, max: 33039, city: 'Homestead' },
+
+      // Northeast Florida
+      { min: 32099, max: 32299, city: 'Jacksonville' },
+      { min: 32240, max: 32250, city: 'Jacksonville Beach' },
+      { min: 32080, max: 32095, city: 'St. Augustine' },
+      { min: 32003, max: 32073, city: 'Orange Park' },
+      { min: 32081, max: 32082, city: 'Ponte Vedra' },
+      { min: 32601, max: 32614, city: 'Gainesville' },
     ];
 
     zipChecker.addEventListener('submit', function(e) {
@@ -281,10 +302,10 @@
         return;
       }
 
-      const isServiceable = serviceableZips.some(range => zip >= range.min && zip <= range.max);
+      const matchedArea = serviceableZips.find(range => zip >= range.min && zip <= range.max);
 
-      if (isServiceable) {
-        showZipResult('success', '✓ Great news! We service your area. <a href="contact.html">Get a quote now!</a>');
+      if (matchedArea) {
+        showZipResult('success', `✓ Great news! We service <strong>${matchedArea.city}</strong>. <a href="contact.html">Get a quote now!</a>`);
       } else {
         showZipResult('warning', 'We\'re not in your area yet, but we\'re expanding! <a href="contact.html">Contact us</a> to be notified when we arrive.');
       }
