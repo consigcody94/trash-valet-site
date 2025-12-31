@@ -542,6 +542,6 @@
     document.head.appendChild(link);
   });
 
-  console.log('🗑️ Florida Trash Valet website loaded successfully!');
+  console.log('🗑️ Flat Rate Trash Valet website loaded successfully!');
 
 })();
