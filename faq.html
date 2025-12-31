@@ -3,340 +3,950 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Frequently asked questions about Flat Rate Trash Valet's doorstep trash collection services for apartments and condos.">
+  <meta name="description" content="Frequently asked questions about Flat Rate Trash Valet's doorstep trash collection services for apartments and condos in Orlando and Florida.">
   <title>FAQ - Flat Rate Trash Valet | Doorstep Trash Collection Questions</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230A7558' width='100' height='100' rx='20'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='white'%3E🗑️%3C/text%3E%3C/svg%3E">
+
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* FAQ Page Specific Styles */
+    .faq-hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      color: white;
+    }
+
+    .faq-hero__title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .faq-hero__subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Search Box */
+    .faq-search {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .faq-search__input {
+      width: 100%;
+      padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .faq-search__input:focus {
+      box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+      transform: scale(1.02);
+    }
+
+    .faq-search__input::placeholder {
+      color: var(--color-gray-400);
+    }
+
+    .faq-search__icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-gray-400);
+      width: 24px;
+      height: 24px;
+    }
+
+    .faq-search__clear {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--color-gray-200);
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--color-gray-600);
+      transition: all 0.2s;
+    }
+
+    .faq-search__clear:hover {
+      background: var(--color-gray-300);
+    }
+
+    .faq-search__clear.visible {
+      display: flex;
+    }
+
+    /* Category Navigation */
+    .faq-nav {
+      background: white;
+      border-bottom: 1px solid var(--color-gray-200);
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+      padding: 1rem 0;
+    }
+
+    .faq-nav__list {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .faq-nav__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-gray-50);
+      border-radius: 50px;
+      color: var(--color-gray-600);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+    }
+
+    .faq-nav__link:hover {
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+
+    .faq-nav__link.active {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .faq-nav__icon {
+      font-size: 1.1rem;
+    }
+
+    .faq-nav__count {
+      background: rgba(0,0,0,0.1);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
+    }
+
+    /* FAQ Categories */
+    .faq-category {
+      margin-bottom: 3rem;
+      scroll-margin-top: 180px;
+    }
+
+    .faq-category__header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--color-gray-100);
+    }
+
+    .faq-category__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary-light);
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .faq-category__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin: 0;
+    }
+
+    .faq-category__count {
+      margin-left: auto;
+      background: var(--color-gray-100);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--color-gray-600);
+    }
+
+    /* FAQ Items - Enhanced */
+    .faq-item {
+      background: white;
+      border-radius: var(--radius-xl);
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--color-gray-100);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-color: var(--color-gray-200);
+    }
+
+    .faq-item.active {
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 20px rgba(10, 117, 88, 0.15);
+    }
+
+    .faq-item.hidden {
+      display: none;
+    }
+
+    .faq-item__question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-gray-800);
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .faq-item__question:hover {
+      color: var(--color-primary);
+    }
+
+    .faq-item.active .faq-item__question {
+      color: var(--color-primary);
+    }
+
+    .faq-item__icon {
+      width: 28px;
+      height: 28px;
+      background: var(--color-gray-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      font-size: 1.25rem;
+      color: var(--color-gray-500);
+    }
+
+    .faq-item.active .faq-item__icon {
+      background: var(--color-primary);
+      color: white;
+      transform: rotate(45deg);
+    }
+
+    .faq-item__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.active .faq-item__answer {
+      max-height: 600px;
+    }
+
+    .faq-item__answer-content {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--color-gray-600);
+      line-height: 1.7;
+    }
+
+    .faq-item__answer-content a {
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    .faq-item__answer-content a:hover {
+      text-decoration: underline;
+    }
+
+    .faq-item__answer-content ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .faq-item__answer-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Quick Answers */
+    .quick-answers {
+      background: var(--color-gray-50);
+      border-radius: var(--radius-2xl);
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .quick-answers__title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .quick-answers__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .quick-answer {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .quick-answer__question {
+      font-weight: 600;
+      color: var(--color-gray-900);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .quick-answer__answer {
+      color: var(--color-gray-600);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* No Results */
+    .faq-no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      display: none;
+    }
+
+    .faq-no-results.visible {
+      display: block;
+    }
+
+    .faq-no-results__icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .faq-no-results__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-gray-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-no-results__text {
+      color: var(--color-gray-500);
+      margin-bottom: 1.5rem;
+    }
+
+    /* CTA Section */
+    .faq-cta {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      border-radius: var(--radius-2xl);
+      padding: 3rem;
+      text-align: center;
+      color: white;
+      margin-top: 3rem;
+    }
+
+    .faq-cta__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-cta__text {
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq-cta__buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .faq-cta .btn--outline-white {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-lg);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .faq-cta .btn--outline-white:hover {
+      background: white;
+      color: var(--color-primary);
+    }
+
+    @media (max-width: 768px) {
+      .faq-hero {
+        padding: 6rem 0 3rem;
+      }
+
+      .faq-nav__list {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        flex-wrap: nowrap;
+      }
+
+      .faq-nav__link {
+        white-space: nowrap;
+      }
+
+      .faq-category__header {
+        flex-wrap: wrap;
+      }
+
+      .faq-category__count {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- Header -->
   <header class="header" id="header">
-    <div class="container">
-      <nav class="nav">
-        <a href="index.html" class="nav__logo"><img src="images/logo.png" alt="Flat Rate Trash Valet" class="logo-img">
-            <span class="logo-text">Flat Rate Trash Valet</span></a>
-        <button class="nav__toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <ul class="nav__list" id="navList">
-          <li><a href="index.html" class="nav__link">Home</a></li>
-          <li><a href="services.html" class="nav__link">Services</a></li>
-          <li><a href="pricing.html" class="nav__link">Pricing</a></li>
-          <li><a href="areas.html" class="nav__link">Service Areas</a></li>
-          <li><a href="about.html" class="nav__link">About</a></li>
-          <li><a href="faq.html" class="nav__link nav__link--active">FAQ</a></li>
-          <li><a href="contact.html" class="nav__link nav__link--cta">Get Quote</a></li>
-        </ul>
-      </nav>
+    <div class="header__top">
+      <div class="container">
+        <div class="header__top-content">
+          <div class="header__top-left">
+            <div class="header__top-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              <a href="tel:+1-407-872-7435">(407) TRASH-FL</a>
+            </div>
+            <div class="header__top-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <a href="mailto:hello@flatratetrashvalet.com">hello@flatratetrashvalet.com</a>
+            </div>
+          </div>
+          <div class="header__top-right">
+            <span>Locally Owned & Operated in Orlando, FL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header__main">
+      <div class="container">
+        <div class="header__main-content">
+          <a href="index.html" class="header__logo">
+            <img src="images/logo.png" alt="Flat Rate Trash Valet" class="logo-img">
+            <span class="logo-text">Flat Rate Trash Valet</span>
+          </a>
+          <nav class="nav">
+            <ul class="nav__list" id="navList">
+              <li><a href="index.html" class="nav__link">Home</a></li>
+              <li><a href="services.html" class="nav__link">Services</a></li>
+              <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+              <li><a href="areas.html" class="nav__link">Service Areas</a></li>
+              <li><a href="about.html" class="nav__link">About</a></li>
+              <li><a href="faq.html" class="nav__link active">FAQ</a></li>
+              <li><a href="contact.html" class="nav__link">Contact</a></li>
+            </ul>
+            <div class="nav__cta">
+              <a href="tel:+1-407-872-7435" class="nav__phone">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                (407) TRASH-FL
+              </a>
+              <a href="pricing.html" class="btn btn--primary">Get Instant Quote</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Page Hero -->
-  <section class="page-hero">
+  <main id="main-content">
+
+  <!-- FAQ Hero with Search -->
+  <section class="faq-hero">
     <div class="container">
-      <h1 class="page-hero__title">Frequently Asked Questions</h1>
-      <p class="page-hero__subtitle">Everything you need to know about our doorstep trash valet service</p>
+      <h1 class="faq-hero__title">How Can We Help?</h1>
+      <p class="faq-hero__subtitle">Search our knowledge base or browse categories below</p>
+      <div class="faq-search">
+        <svg class="faq-search__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input type="text" class="faq-search__input" id="faqSearch" placeholder="Search for answers..." autocomplete="off">
+        <button class="faq-search__clear" id="searchClear" aria-label="Clear search">&times;</button>
+      </div>
     </div>
   </section>
+
+  <!-- Category Navigation -->
+  <nav class="faq-nav">
+    <div class="container">
+      <ul class="faq-nav__list">
+        <li><a href="#getting-started" class="faq-nav__link active"><span class="faq-nav__icon">🚀</span> Getting Started</a></li>
+        <li><a href="#service" class="faq-nav__link"><span class="faq-nav__icon">🗑️</span> Service</a></li>
+        <li><a href="#pricing" class="faq-nav__link"><span class="faq-nav__icon">💰</span> Pricing</a></li>
+        <li><a href="#property-managers" class="faq-nav__link"><span class="faq-nav__icon">🏢</span> Managers</a></li>
+        <li><a href="#residents" class="faq-nav__link"><span class="faq-nav__icon">🏠</span> Residents</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- FAQ Content -->
   <section class="section">
     <div class="container">
-      <div class="faq-page">
-        <!-- Getting Started -->
-        <div class="faq-category">
+      <!-- Quick Answers -->
+      <div class="quick-answers" id="quickAnswers">
+        <h2 class="quick-answers__title">⚡ Quick Answers</h2>
+        <div class="quick-answers__grid">
+          <div class="quick-answer">
+            <div class="quick-answer__question">What nights do you pick up?</div>
+            <div class="quick-answer__answer">Sunday through Thursday, 8 PM - midnight. Customizable for larger properties.</div>
+          </div>
+          <div class="quick-answer">
+            <div class="quick-answer__question">How much does it cost?</div>
+            <div class="quick-answer__answer">Starting at $10/unit/month. Volume discounts available for 50+ units.</div>
+          </div>
+          <div class="quick-answer">
+            <div class="quick-answer__question">Do you provide bins?</div>
+            <div class="quick-answer__answer">Yes! Bins are included at no extra cost for every unit.</div>
+          </div>
+          <div class="quick-answer">
+            <div class="quick-answer__question">Is there a contract?</div>
+            <div class="quick-answer__answer">Month-to-month available. 90-day money-back guarantee included.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results Message -->
+      <div class="faq-no-results" id="noResults">
+        <div class="faq-no-results__icon">🔍</div>
+        <h3 class="faq-no-results__title">No results found</h3>
+        <p class="faq-no-results__text">Try different keywords or browse the categories below</p>
+        <button class="btn btn--primary" id="clearSearchBtn">Clear Search</button>
+      </div>
+
+      <!-- Getting Started -->
+      <div class="faq-category" id="getting-started">
+        <div class="faq-category__header">
+          <div class="faq-category__icon">🚀</div>
           <h2 class="faq-category__title">Getting Started</h2>
+          <span class="faq-category__count">4 questions</span>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-item__question">
-              How does valet trash service work?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>It's simple! We provide each unit with a bin to place outside their door. Residents place their trash in the bin by 8 PM, and our uniformed valets collect it during our evening collection window (typically 8 PM - 12 AM). We transport all trash to your property's main dumpster, so residents never have to make that walk themselves.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What areas do you serve?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We proudly serve multifamily communities throughout Florida, including Orlando, Tampa, Jacksonville, Miami, Fort Lauderdale, West Palm Beach, St. Petersburg, and Clearwater. If you're not sure if we service your area, use our <a href="index.html#zip-checker">ZIP code checker</a> or <a href="contact.html">contact us</a> directly.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              How quickly can you start service?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We can typically begin service within 7-14 days of signing your agreement. This includes time for a property walkthrough, bin delivery to all units, and resident notification. For properties that need faster implementation, we offer expedited setup for an additional fee.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Is there a minimum property size?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We work with properties of all sizes, from boutique communities with 20 units to large complexes with 500+ units. Our pricing scales based on unit count, and we offer volume discounts for larger properties. Every community deserves premium service!</p>
+        <div class="faq-item" data-keywords="work service process how does">
+          <button class="faq-item__question">
+            How does valet trash service work?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>It's simple! We provide each unit with a bin to place outside their door. Residents place their trash in the bin by 8 PM on collection nights, and our uniformed valets collect it during our evening window (8 PM - midnight). We transport all trash to your property's dumpster, so residents never have to make that walk.</p>
             </div>
           </div>
         </div>
 
-        <!-- Service Details -->
-        <div class="faq-category">
+        <div class="faq-item" data-keywords="areas serve location zip orlando florida tampa jacksonville miami">
+          <button class="faq-item__question">
+            What areas do you serve?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>We proudly serve multifamily communities throughout Florida, including:</p>
+              <ul>
+                <li><strong>Central Florida:</strong> Orlando, Winter Park, Kissimmee, Sanford</li>
+                <li><strong>Tampa Bay:</strong> Tampa, St. Petersburg, Clearwater, Brandon</li>
+                <li><strong>South Florida:</strong> Miami, Fort Lauderdale, West Palm Beach, Boca Raton</li>
+                <li><strong>Northeast:</strong> Jacksonville, St. Augustine, Gainesville</li>
+              </ul>
+              <p>Use our <a href="areas.html">service area checker</a> or <a href="contact.html">contact us</a> to confirm coverage.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="start begin quickly fast setup onboarding timeline">
+          <button class="faq-item__question">
+            How quickly can you start service?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>We can typically begin service within <strong>7-14 days</strong> of signing your agreement. This includes:</p>
+              <ul>
+                <li>Property walkthrough and route planning</li>
+                <li>Bin delivery to all units</li>
+                <li>Resident notification and welcome materials</li>
+              </ul>
+              <p>Need it faster? We offer <strong>expedited setup</strong> for an additional fee.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="minimum size units small property requirements">
+          <button class="faq-item__question">
+            Is there a minimum property size?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>We work with properties of all sizes! From boutique communities with <strong>20 units</strong> to large complexes with <strong>500+ units</strong>. Our pricing scales based on unit count, and we offer volume discounts for larger properties.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Details -->
+      <div class="faq-category" id="service">
+        <div class="faq-category__header">
+          <div class="faq-category__icon">🗑️</div>
           <h2 class="faq-category__title">Service Details</h2>
+          <span class="faq-category__count">6 questions</span>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What nights do you collect trash?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Collection frequency is customizable based on your community's needs. Our most popular option is 5 nights per week (Sunday-Thursday), but we also offer 3, 4, 6, or 7-night options. We'll help you determine the best schedule based on your resident count and community preferences.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What time do you collect?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Our standard collection window is 8 PM to 12 AM. Residents must have their trash out by 8 PM on collection nights. This evening schedule ensures we don't disturb residents during dinner hours while still completing collection before late night. The exact time varies by route, but your trash will always be collected that night.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Do you provide the bins?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Yes! We provide high-quality, durable bins to every unit as part of our service. Bins are cleaned regularly and replaced if damaged. We also provide recycling bins for communities that include recycling service. Bins remain property of Flat Rate Trash Valet.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Do you offer recycling?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Absolutely! We offer full recycling services as an add-on to any plan. We provide separate recycling bins, collect recyclables on designated nights, and ensure proper sorting and disposal. Recycling is available 1-3 nights per week depending on your community's needs. It's great for residents and great for Florida!</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What about holidays?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We observe 6 major holidays: New Year's Day, Memorial Day, Independence Day, Labor Day, Thanksgiving, and Christmas. On these holidays, service may be suspended. We always communicate holiday schedules in advance and can arrange makeup collections if needed. We know trash doesn't take holidays, so we work to minimize any gaps.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What if a resident forgets to put their trash out?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>If a resident misses the 8 PM cutoff, they simply wait until the next collection night. Our valets follow strict routes and schedules to ensure efficient service for all residents. We recommend residents set a daily reminder until it becomes habit. Most residents love the service so much, they never forget!</p>
+        <div class="faq-item" data-keywords="nights collect pickup schedule days sunday thursday frequency">
+          <button class="faq-item__question">
+            What nights do you collect trash?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Collection frequency is customizable:</p>
+              <ul>
+                <li><strong>Most Popular:</strong> 5 nights/week (Sunday-Thursday)</li>
+                <li><strong>Options:</strong> 3, 4, 6, or 7 nights available</li>
+              </ul>
+              <p>We'll help determine the best schedule based on your resident count and preferences.</p>
             </div>
           </div>
         </div>
 
-        <!-- For Property Managers -->
-        <div class="faq-category">
-          <h2 class="faq-category__title">For Property Managers</h2>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              How are residents billed?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We bill the property management company directly on a monthly basis. You then have flexibility in how you handle resident billing—many properties include it as a utility or amenity fee in rent, while others bill it separately. We provide detailed invoices to make your accounting simple.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What reporting do you provide?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Our Standard and Premium plans include monthly service reports with collection statistics, any issues noted, and compliance summaries. Premium clients receive real-time digital tracking and immediate issue notifications. We believe transparency builds trust, so you always know exactly what's happening at your property.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Are your valets insured and background-checked?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Yes, absolutely. Every member of our team undergoes comprehensive background checks before hiring. We carry full liability insurance (we're happy to provide certificates upon request) and workers' compensation coverage. Your residents' safety and security is our top priority.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What if there's a problem or complaint?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We take every concern seriously. Property managers can reach us 24/7 through our dedicated support line. Most issues are resolved within 24 hours. We also conduct regular check-ins with property managers to proactively address any concerns. Our 90-day guarantee means if you're not happy, we'll make it right or let you cancel.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Can you handle move-ins and move-outs?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Yes! We offer bulk removal services specifically for move-in/move-out situations. When residents leave large items or excessive trash, just let us know and we'll handle it. This service is billed separately but at preferred rates for our regular clients. We can also assist with dumpster overflow situations.</p>
+        <div class="faq-item" data-keywords="time collect pickup evening night hours window">
+          <button class="faq-item__question">
+            What time do you collect?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Our standard collection window is <strong>8 PM to midnight</strong>. Residents must have their trash out by 8 PM on collection nights. This evening schedule avoids disturbing residents during dinner hours.</p>
             </div>
           </div>
         </div>
 
-        <!-- Pricing & Billing -->
-        <div class="faq-category">
+        <div class="faq-item" data-keywords="bins containers provide included free">
+          <button class="faq-item__question">
+            Do you provide the bins?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p><strong>Yes!</strong> We provide high-quality, durable bins to every unit—at no extra cost. Bins are cleaned regularly and replaced free if damaged.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="recycling recycle environmental green sustainability">
+          <button class="faq-item__question">
+            Do you offer recycling?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p><strong>Absolutely!</strong> We offer recycling as an add-on to any plan with separate recycling bins and collection 1-3 nights/week.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="holidays christmas thanksgiving memorial labor day off">
+          <button class="faq-item__question">
+            What about holidays?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>We observe 6 major holidays: New Year's Day, Memorial Day, Independence Day, Labor Day, Thanksgiving, and Christmas. Holiday schedules are communicated in advance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="forgot miss missed late trash out cutoff">
+          <button class="faq-item__question">
+            What if a resident forgets to put their trash out?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>If a resident misses the 8 PM cutoff, they wait until the next collection night. We recommend setting a phone reminder until it becomes habit!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing & Billing -->
+      <div class="faq-category" id="pricing">
+        <div class="faq-category__header">
+          <div class="faq-category__icon">💰</div>
           <h2 class="faq-category__title">Pricing & Billing</h2>
+          <span class="faq-category__count">4 questions</span>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-item__question">
-              How much does valet trash cost?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Our pricing starts at $10 per unit per month for our Essential plan (3 nights/week). Our most popular Standard plan is $12.50/unit/month for 5 nights/week, and Premium is $15/unit/month for 7 nights/week plus extra features. We offer volume discounts for larger properties—up to 15% off for communities with 200+ units. Check our <a href="pricing.html">pricing page</a> or use our quote calculator for exact pricing.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Are there any hidden fees?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>No hidden fees, ever. Your quoted price includes bins, regular bin cleaning, collection on scheduled nights, and transport to your dumpster. The only additional charges would be optional add-ons like recycling, bulk removal, or special services that you request. We believe in transparent pricing.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What's your contract length?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We offer flexible contract terms starting at 12 months, with discounts available for longer commitments. But here's what sets us apart: our 90-day satisfaction guarantee. If you're not completely satisfied within the first 90 days, you can cancel with no penalties. We're confident you'll love our service.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              How do I pay?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>We offer multiple payment options for your convenience: ACH bank transfer (preferred), credit card, or check. Invoices are sent on the 1st of each month with payment due by the 15th. We can also accommodate custom billing cycles to match your property's accounting schedule.</p>
+        <div class="faq-item" data-keywords="cost price much per unit monthly rate">
+          <button class="faq-item__question">
+            How much does valet trash cost?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <ul>
+                <li><strong>Essential:</strong> $10/unit/month (3 nights/week)</li>
+                <li><strong>Standard:</strong> $12.50/unit/month (5 nights/week) — Most Popular</li>
+                <li><strong>Premium:</strong> $15/unit/month (7 nights/week + extras)</li>
+              </ul>
+              <p>Volume discounts up to 15% for 200+ units! Use our <a href="pricing.html">quote calculator</a> for exact pricing.</p>
             </div>
           </div>
         </div>
 
-        <!-- Resident Questions -->
-        <div class="faq-category">
+        <div class="faq-item" data-keywords="hidden fees extra charges additional costs">
+          <button class="faq-item__question">
+            Are there any hidden fees?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p><strong>No hidden fees, ever.</strong> Your price includes bins, cleaning, collection, and transport. Optional add-ons (recycling, bulk removal) are clearly priced separately.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="contract length commitment term cancel cancellation">
+          <button class="faq-item__question">
+            What's your contract length?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Standard 12-month agreement with discounts for longer terms. <strong>Our 90-Day Guarantee:</strong> If not satisfied within 90 days, cancel with no penalties.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="pay payment method invoice billing ach credit card check">
+          <button class="faq-item__question">
+            How do I pay?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>We accept ACH bank transfer (preferred), credit card, or check. Invoices sent on the 1st, due by the 15th. Custom billing cycles available.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Property Managers -->
+      <div class="faq-category" id="property-managers">
+        <div class="faq-category__header">
+          <div class="faq-category__icon">🏢</div>
+          <h2 class="faq-category__title">For Property Managers</h2>
+          <span class="faq-category__count">5 questions</span>
+        </div>
+
+        <div class="faq-item" data-keywords="residents billed billing invoice charge fee rent utility">
+          <button class="faq-item__question">
+            How are residents billed?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>We bill the property management company directly. You choose how to bill residents—include in rent, as a utility fee, or bill separately.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="reporting reports analytics tracking statistics data">
+          <button class="faq-item__question">
+            What reporting do you provide?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Standard & Premium plans include monthly service reports with statistics and compliance summaries. Premium adds real-time tracking and instant issue notifications.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="insurance insured background check safety security bonded licensed">
+          <button class="faq-item__question">
+            Are your valets insured and background-checked?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p><strong>Yes.</strong> All team members undergo comprehensive background checks, are covered by full liability insurance and workers' comp, and wear branded uniforms with ID badges.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="problem complaint issue missed support help contact">
+          <button class="faq-item__question">
+            What if there's a problem or complaint?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>24/7 dedicated support line for property managers. Most issues resolved within 24 hours. Our 90-day guarantee ensures satisfaction or you can cancel.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="move in out bulk large items furniture junk removal">
+          <button class="faq-item__question">
+            Can you handle move-ins and move-outs?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p><strong>Yes!</strong> We offer bulk removal for move-in/move-out situations and dumpster overflow. Preferred rates for regular clients.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Residents -->
+      <div class="faq-category" id="residents">
+        <div class="faq-category__header">
+          <div class="faq-category__icon">🏠</div>
           <h2 class="faq-category__title">For Residents</h2>
+          <span class="faq-category__count">4 questions</span>
+        </div>
 
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Where do I put my trash?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Place your trash in the bin provided and set it outside your door by 8 PM on collection nights. Make sure the lid closes completely. After collection, bring your empty bin back inside. It's that simple—no more long walks to the dumpster!</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What can I put in the bin?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Regular household trash that fits in your bin with the lid closed. This includes bagged kitchen waste, small boxes (broken down), and general household items. Please do NOT include: hazardous materials, liquids, sharp objects not in a safe container, or extremely heavy items. For large items, contact us about bulk removal service.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              What if my bin is damaged or missing?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Contact your property management office, and they'll coordinate with us for a replacement. We typically deliver replacement bins within 48 hours. Bin replacement is included in your community's service at no extra charge for normal wear and tear.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question">
-              Can I opt out of the service?
-              <span class="faq-item__icon">+</span>
-            </button>
-            <div class="faq-item__answer">
-              <p>Valet trash service is typically a community-wide amenity arranged by your property management. Individual opt-outs are generally not available, as the service is included in your rent or utility fees. The good news? Most residents who try valet trash absolutely love it! If you have concerns, please speak with your property manager.</p>
+        <div class="faq-item" data-keywords="where put place trash door outside">
+          <button class="faq-item__question">
+            Where do I put my trash?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Place trash in the provided bin and set it outside your door by 8 PM on collection nights. Make sure the lid closes completely and bring the empty bin back inside after collection.</p>
             </div>
           </div>
         </div>
 
-        <!-- Still Have Questions -->
-        <div class="faq-cta">
-          <h2>Still Have Questions?</h2>
-          <p>Our team is ready to help. Get in touch and we'll respond within 2 hours during business hours.</p>
-          <div class="faq-cta__buttons">
-            <a href="contact.html" class="btn btn--primary">Contact Us</a>
-            <a href="tel:+14078727435" class="btn btn--outline">Call (407) TRASH-FL</a>
+        <div class="faq-item" data-keywords="what can put allowed prohibited items hazardous liquid">
+          <button class="faq-item__question">
+            What can I put in the bin?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p><strong>Allowed:</strong> Bagged kitchen waste, small boxes (broken down), general household items that fit with lid closed.</p>
+              <p><strong>NOT Allowed:</strong> Hazardous materials, liquids, sharp objects (unless safely contained), extremely heavy items.</p>
+            </div>
           </div>
+        </div>
+
+        <div class="faq-item" data-keywords="bin damaged missing broken replacement stolen">
+          <button class="faq-item__question">
+            What if my bin is damaged or missing?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Contact your property management office. Replacement bins are typically delivered within 48 hours and are free for normal wear and tear.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-keywords="opt out cancel decline refuse service">
+          <button class="faq-item__question">
+            Can I opt out of the service?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <div class="faq-item__answer-content">
+              <p>Valet trash is typically a community-wide amenity. Individual opt-outs are generally not available since it's included in rent/fees. If you have concerns, speak with your property manager.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="faq-cta">
+        <h2 class="faq-cta__title">Still Have Questions?</h2>
+        <p class="faq-cta__text">Our team responds within 2 hours during business hours. We're here to help!</p>
+        <div class="faq-cta__buttons">
+          <a href="contact.html" class="btn btn--secondary">Contact Us</a>
+          <a href="tel:+1-407-872-7435" class="btn--outline-white">Call (407) TRASH-FL</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section section--dark">
-    <div class="container text-center">
-      <h2>Ready to Upgrade Your Community?</h2>
-      <p style="max-width: 600px; margin: 0 auto 2rem;">Join hundreds of Florida properties that trust us for reliable, professional trash valet service.</p>
-      <a href="contact.html" class="btn btn--secondary btn--lg">Get Your Free Quote</a>
-    </div>
-  </section>
-
   <!-- Footer -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a href="index.html" class="footer__logo"><img src="images/logo.png" alt="Flat Rate Trash Valet" class="logo-img">
-            <span class="logo-text">Flat Rate Trash Valet</span></a>
+          <a href="index.html" class="footer__logo">
+            <img src="images/logo.png" alt="Flat Rate Trash Valet" class="logo-img">
+            <span class="logo-text">Flat Rate Trash Valet</span>
+          </a>
           <p class="footer__tagline">Florida's premier doorstep trash collection service for multifamily communities.</p>
-          <div class="footer__social">
-            <a href="#" aria-label="Facebook">FB</a>
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="LinkedIn">LI</a>
-          </div>
         </div>
         <div class="footer__links">
           <h4>Services</h4>
@@ -358,17 +968,13 @@
         </div>
         <div class="footer__contact">
           <h4>Contact</h4>
-          <p><strong>Phone:</strong> (407) TRASH-FL</p>
-          <p><strong>Email:</strong> info@flatratetrashvalet.com</p>
+          <p><strong>Phone:</strong> <a href="tel:+1-407-872-7435">(407) TRASH-FL</a></p>
+          <p><strong>Email:</strong> <a href="mailto:hello@flatratetrashvalet.com">hello@flatratetrashvalet.com</a></p>
           <p><strong>Hours:</strong> Mon-Fri 8AM-6PM</p>
         </div>
       </div>
       <div class="footer__bottom">
         <p>&copy; <span class="current-year">2025</span> Flat Rate Trash Valet. All rights reserved.</p>
-        <div class="footer__legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
       </div>
     </div>
   </footer>
@@ -381,5 +987,98 @@
   </button>
 
   <script src="js/main.js"></script>
+  <script>
+    // FAQ Search Functionality
+    const searchInput = document.getElementById('faqSearch');
+    const searchClear = document.getElementById('searchClear');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const faqItems = document.querySelectorAll('.faq-item');
+    const categories = document.querySelectorAll('.faq-category');
+    const noResults = document.getElementById('noResults');
+    const quickAnswers = document.getElementById('quickAnswers');
+
+    function filterFAQ(query) {
+      const searchTerm = query.toLowerCase().trim();
+      let visibleCount = 0;
+
+      searchClear.classList.toggle('visible', searchTerm.length > 0);
+
+      if (searchTerm === '') {
+        faqItems.forEach(item => item.classList.remove('hidden'));
+        categories.forEach(cat => cat.style.display = 'block');
+        noResults.classList.remove('visible');
+        quickAnswers.style.display = 'block';
+        return;
+      }
+
+      quickAnswers.style.display = 'none';
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-item__question').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-item__answer-content').textContent.toLowerCase();
+        const keywords = (item.dataset.keywords || '').toLowerCase();
+
+        const matches = question.includes(searchTerm) ||
+                        answer.includes(searchTerm) ||
+                        keywords.includes(searchTerm);
+
+        item.classList.toggle('hidden', !matches);
+        if (matches) visibleCount++;
+      });
+
+      categories.forEach(cat => {
+        const visibleItems = cat.querySelectorAll('.faq-item:not(.hidden)').length;
+        cat.style.display = visibleItems > 0 ? 'block' : 'none';
+      });
+
+      noResults.classList.toggle('visible', visibleCount === 0);
+    }
+
+    function clearSearch() {
+      searchInput.value = '';
+      filterFAQ('');
+      searchInput.focus();
+    }
+
+    searchInput.addEventListener('input', (e) => filterFAQ(e.target.value));
+    searchClear.addEventListener('click', clearSearch);
+    clearSearchBtn.addEventListener('click', clearSearch);
+
+    // FAQ Accordion
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-item__question');
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(other => other.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Category Navigation
+    const navLinks = document.querySelectorAll('.faq-nav__link');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    // Highlight active category on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '-100px 0px -50% 0px' });
+
+    categories.forEach(cat => observer.observe(cat));
+  </script>
 </body>
 </html>

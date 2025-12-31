@@ -137,8 +137,74 @@ ul, ol {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-gray-900);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Skip Link - visible on focus for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  z-index: 10000;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enhanced focus styles for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Remove default focus outline when not using keyboard */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ============================================
@@ -732,7 +798,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero__stat-number {
   font-size: var(--text-3xl);
   font-weight: 800;
-  color: var(--color-primary);
+  color: #0A7558 !important;
   line-height: 1;
 }
 
@@ -2523,28 +2589,31 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 10px var(--color-primary);
 }
 
-/* Enhanced Stats Counter */
+/* Enhanced Stats Counter - stats are in white container */
 .hero__stat-number {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, #e0f2fe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #0A7558 !important;
+}
+
+.hero__stat-label {
+  color: var(--color-gray-600);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
 }
 
 .hero__stat {
-  position: relative;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease;
+  text-align: center;
+  padding: 0 var(--space-4);
+  border-right: 1px solid var(--color-gray-200);
+  transition: transform 0.3s ease;
+}
+
+.hero__stat:last-child {
+  border-right: none;
 }
 
 .hero__stat:hover {
-  background: rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
 }
 
