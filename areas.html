@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Florida Trash Valet serves multifamily communities throughout Florida including Orlando, Tampa, Miami, Jacksonville, and more.">
+  <title>Service Areas - Florida Trash Valet | Valet Trash Throughout Florida</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .areas-hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: white;
+      padding: 8rem 0 4rem;
+      text-align: center;
+    }
+    .areas-hero__title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .areas-hero__subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .region {
+      margin-bottom: 4rem;
+    }
+    .region__header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--color-primary-light);
+    }
+    .region__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .region__title {
+      font-size: 1.75rem;
+      color: var(--color-text);
+      margin: 0;
+    }
+    .cities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .city-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .city-card:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .city-card__name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.25rem;
+    }
+    .city-card__zip {
+      font-size: 0.875rem;
+      color: var(--color-text-light);
+    }
+    .city-card__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .city-card__status--active {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+    .city-card__status--expanding {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+    .city-card__status--coming {
+      background: #E0E7FF;
+      color: #3730A3;
+    }
+    .zip-checker-section {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .zip-checker-section h2 {
+      margin-bottom: 1rem;
+    }
+    .zip-checker-section p {
+      color: var(--color-text-light);
+      margin-bottom: 2rem;
+    }
+    .zip-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .zip-form input {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .zip-form input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+    .coverage-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--color-border);
+    }
+    .coverage-stat {
+      text-align: center;
+    }
+    .coverage-stat__number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .coverage-stat__label {
+      color: var(--color-text-light);
+      font-size: 1rem;
+    }
+    .expansion-banner {
+      background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+      color: white;
+      padding: 3rem;
+      border-radius: var(--radius-xl);
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .expansion-banner h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .expansion-banner p {
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 640px) {
+      .zip-form {
+        flex-direction: column;
+      }
+      .zip-checker-section {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="nav__logo">[YOUR LOGO]</a>
+        <button class="nav__toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav__list" id="navList">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="services.html" class="nav__link">Services</a></li>
+          <li><a href="pricing.html" class="nav__link">Pricing</a></li>
+          <li><a href="areas.html" class="nav__link nav__link--active">Service Areas</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="faq.html" class="nav__link">FAQ</a></li>
+          <li><a href="contact.html" class="nav__link nav__link--cta">Get Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Areas Hero -->
+  <section class="areas-hero">
+    <div class="container">
+      <h1 class="areas-hero__title">Serving Communities Across Florida</h1>
+      <p class="areas-hero__subtitle">From Orlando to Miami, we're bringing premium valet trash service to multifamily communities throughout the Sunshine State.</p>
+    </div>
+  </section>
+
+  <!-- ZIP Checker -->
+  <section class="section" style="padding-top: 4rem;">
+    <div class="container">
+      <div class="zip-checker-section" id="zip-checker">
+        <h2>Check If We Service Your Area</h2>
+        <p>Enter your ZIP code to see if we're available in your community</p>
+        <form class="zip-form" id="zipChecker">
+          <input type="text" id="zipInput" placeholder="Enter ZIP code" maxlength="5" pattern="[0-9]{5}" required>
+          <button type="submit" class="btn btn--primary">Check Availability</button>
+        </form>
+        <div id="zipResult" style="display: none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas by Region -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+
+      <!-- Central Florida -->
+      <div class="region" id="orlando">
+        <div class="region__header">
+          <div class="region__icon">🏰</div>
+          <h2 class="region__title">Central Florida</h2>
+        </div>
+        <div class="cities-grid">
+          <div class="city-card">
+            <div class="city-card__name">Orlando</div>
+            <div class="city-card__zip">ZIP: 32801-32899</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Winter Park</div>
+            <div class="city-card__zip">ZIP: 32789-32792</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Kissimmee</div>
+            <div class="city-card__zip">ZIP: 34741-34759</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Altamonte Springs</div>
+            <div class="city-card__zip">ZIP: 32701-32714</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Lake Mary</div>
+            <div class="city-card__zip">ZIP: 32746</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Sanford</div>
+            <div class="city-card__zip">ZIP: 32771-32773</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Clermont</div>
+            <div class="city-card__zip">ZIP: 34711-34715</div>
+            <span class="city-card__status city-card__status--expanding">◐ Expanding</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Daytona Beach</div>
+            <div class="city-card__zip">ZIP: 32114-32129</div>
+            <span class="city-card__status city-card__status--coming">◯ Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tampa Bay Area -->
+      <div class="region" id="tampa">
+        <div class="region__header">
+          <div class="region__icon">🌴</div>
+          <h2 class="region__title">Tampa Bay Area</h2>
+        </div>
+        <div class="cities-grid">
+          <div class="city-card">
+            <div class="city-card__name">Tampa</div>
+            <div class="city-card__zip">ZIP: 33601-33699</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">St. Petersburg</div>
+            <div class="city-card__zip">ZIP: 33701-33799</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Clearwater</div>
+            <div class="city-card__zip">ZIP: 33755-33769</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Brandon</div>
+            <div class="city-card__zip">ZIP: 33510-33511</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Lakeland</div>
+            <div class="city-card__zip">ZIP: 33801-33815</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Wesley Chapel</div>
+            <div class="city-card__zip">ZIP: 33543-33545</div>
+            <span class="city-card__status city-card__status--expanding">◐ Expanding</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Sarasota</div>
+            <div class="city-card__zip">ZIP: 34230-34243</div>
+            <span class="city-card__status city-card__status--coming">◯ Coming Soon</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Bradenton</div>
+            <div class="city-card__zip">ZIP: 34201-34212</div>
+            <span class="city-card__status city-card__status--coming">◯ Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- South Florida -->
+      <div class="region" id="miami">
+        <div class="region__header">
+          <div class="region__icon">🏖️</div>
+          <h2 class="region__title">South Florida</h2>
+        </div>
+        <div class="cities-grid">
+          <div class="city-card">
+            <div class="city-card__name">Miami</div>
+            <div class="city-card__zip">ZIP: 33101-33299</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Fort Lauderdale</div>
+            <div class="city-card__zip">ZIP: 33301-33399</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">West Palm Beach</div>
+            <div class="city-card__zip">ZIP: 33401-33499</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Boca Raton</div>
+            <div class="city-card__zip">ZIP: 33427-33499</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Hollywood</div>
+            <div class="city-card__zip">ZIP: 33019-33029</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Coral Springs</div>
+            <div class="city-card__zip">ZIP: 33065-33077</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Pembroke Pines</div>
+            <div class="city-card__zip">ZIP: 33023-33029</div>
+            <span class="city-card__status city-card__status--expanding">◐ Expanding</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Homestead</div>
+            <div class="city-card__zip">ZIP: 33030-33039</div>
+            <span class="city-card__status city-card__status--coming">◯ Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Northeast Florida -->
+      <div class="region" id="jacksonville">
+        <div class="region__header">
+          <div class="region__icon">🌊</div>
+          <h2 class="region__title">Northeast Florida</h2>
+        </div>
+        <div class="cities-grid">
+          <div class="city-card">
+            <div class="city-card__name">Jacksonville</div>
+            <div class="city-card__zip">ZIP: 32099-32299</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Jacksonville Beach</div>
+            <div class="city-card__zip">ZIP: 32240-32250</div>
+            <span class="city-card__status city-card__status--active">● Now Serving</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">St. Augustine</div>
+            <div class="city-card__zip">ZIP: 32080-32095</div>
+            <span class="city-card__status city-card__status--expanding">◐ Expanding</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Orange Park</div>
+            <div class="city-card__zip">ZIP: 32003-32073</div>
+            <span class="city-card__status city-card__status--expanding">◐ Expanding</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Ponte Vedra</div>
+            <div class="city-card__zip">ZIP: 32081-32082</div>
+            <span class="city-card__status city-card__status--coming">◯ Coming Soon</span>
+          </div>
+          <div class="city-card">
+            <div class="city-card__name">Gainesville</div>
+            <div class="city-card__zip">ZIP: 32601-32614</div>
+            <span class="city-card__status city-card__status--coming">◯ Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coverage Stats -->
+      <div class="coverage-stats">
+        <div class="coverage-stat">
+          <div class="coverage-stat__number">25+</div>
+          <div class="coverage-stat__label">Cities Served</div>
+        </div>
+        <div class="coverage-stat">
+          <div class="coverage-stat__number">500+</div>
+          <div class="coverage-stat__label">Communities</div>
+        </div>
+        <div class="coverage-stat">
+          <div class="coverage-stat__number">100K+</div>
+          <div class="coverage-stat__label">Units Serviced</div>
+        </div>
+        <div class="coverage-stat">
+          <div class="coverage-stat__number">4</div>
+          <div class="coverage-stat__label">Regions Covered</div>
+        </div>
+      </div>
+
+      <!-- Expansion Banner -->
+      <div class="expansion-banner">
+        <h3>Don't See Your City?</h3>
+        <p>We're constantly expanding to new Florida communities. Let us know where you need service and we'll prioritize your area.</p>
+        <a href="contact.html" class="btn btn--light">Request Service in Your Area</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Property Types -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header text-center">
+        <h2>Properties We Serve</h2>
+        <p>From boutique communities to large-scale complexes, we customize our service to fit your needs</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-card__icon">🏢</div>
+          <h3 class="feature-card__title">Apartment Communities</h3>
+          <p class="feature-card__text">Mid-rise and high-rise apartment complexes with 50+ units. We handle the logistics so your residents enjoy doorstep convenience.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🏠</div>
+          <h3 class="feature-card__title">Condominiums</h3>
+          <p class="feature-card__text">Condo associations looking to add premium amenities. Enhance property values with professional valet trash service.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🏘️</div>
+          <h3 class="feature-card__title">Townhome Communities</h3>
+          <p class="feature-card__text">HOA-managed townhome developments. Perfect for communities where residents appreciate convenience and community standards.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🌳</div>
+          <h3 class="feature-card__title">Garden-Style Apartments</h3>
+          <p class="feature-card__text">Sprawling garden communities with multiple buildings. Our route optimization ensures efficient, reliable service across large properties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section section--dark">
+    <div class="container text-center">
+      <h2>Ready to Bring Valet Trash to Your Community?</h2>
+      <p style="max-width: 600px; margin: 0 auto 2rem;">Get a customized quote for your property. We'll schedule a walkthrough and have you up and running in no time.</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn--secondary btn--lg">Get Your Free Quote</a>
+        <a href="tel:+15551234567" class="btn btn--outline-light btn--lg">Call (555) 123-4567</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo">[YOUR LOGO]</a>
+          <p class="footer__tagline">Florida's premier doorstep trash collection service for multifamily communities.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="LinkedIn">LI</a>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html">Valet Trash</a></li>
+            <li><a href="services.html#recycling">Recycling</a></li>
+            <li><a href="services.html#bulk">Bulk Removal</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="areas.html">Service Areas</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <p><strong>Phone:</strong> (555) 123-4567</p>
+          <p><strong>Email:</strong> info@[yourdomain].com</p>
+          <p><strong>Hours:</strong> Mon-Fri 8AM-6PM</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; <span class="current-year">2025</span> [YOUR COMPANY NAME]. All rights reserved.</p>
+        <div class="footer__legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Button -->
+  <button class="chat-button" id="chatButton" aria-label="Chat with us">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
