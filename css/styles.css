@@ -401,6 +401,18 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--space-8);
 }
 
+.logo-img {
+  height: 50px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+.footer__logo .logo-img {
+  height: 40px;
+  filter: brightness(0) invert(1);
+}
+
 .nav__list {
   display: flex;
   align-items: center;
