@@ -402,15 +402,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-img {
-  height: 50px;
+  height: 80px;
   width: auto;
-  max-width: 200px;
+  max-width: 280px;
   object-fit: contain;
 }
 
 .footer__logo .logo-img {
-  height: 40px;
-  filter: brightness(0) invert(1);
+  height: 60px;
 }
 
 .nav__list {
