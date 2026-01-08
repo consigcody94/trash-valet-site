@@ -67,13 +67,13 @@
     const estimatedPrice = document.getElementById('estimatedPrice');
 
     // Base pricing per unit per month
-    const basePricePerUnit = 12.50;
+    const basePricePerUnit = 10.00;
     const frequencyMultipliers = {
-      3: 0.65,
+      3: 0.90,
       4: 0.80,
       5: 1.00,
       6: 1.15,
-      7: 1.30
+      7: 1.20
     };
     const propertyMultipliers = {
       apartment: 1.00,
@@ -257,33 +257,8 @@
       { min: 34711, max: 34715, city: 'Clermont' },
       { min: 32114, max: 32129, city: 'Daytona Beach' },
 
-      // Tampa Bay Area
-      { min: 33601, max: 33699, city: 'Tampa' },
-      { min: 33701, max: 33799, city: 'St. Petersburg' },
-      { min: 33755, max: 33769, city: 'Clearwater' },
-      { min: 33510, max: 33511, city: 'Brandon' },
-      { min: 33801, max: 33815, city: 'Lakeland' },
-      { min: 33543, max: 33545, city: 'Wesley Chapel' },
-      { min: 34230, max: 34243, city: 'Sarasota' },
-      { min: 34201, max: 34212, city: 'Bradenton' },
 
-      // South Florida
-      { min: 33101, max: 33299, city: 'Miami' },
-      { min: 33301, max: 33399, city: 'Fort Lauderdale' },
-      { min: 33401, max: 33499, city: 'West Palm Beach' },
-      { min: 33427, max: 33499, city: 'Boca Raton' },
-      { min: 33019, max: 33029, city: 'Hollywood' },
-      { min: 33065, max: 33077, city: 'Coral Springs' },
-      { min: 33023, max: 33029, city: 'Pembroke Pines' },
-      { min: 33030, max: 33039, city: 'Homestead' },
 
-      // Northeast Florida
-      { min: 32099, max: 32299, city: 'Jacksonville' },
-      { min: 32240, max: 32250, city: 'Jacksonville Beach' },
-      { min: 32080, max: 32095, city: 'St. Augustine' },
-      { min: 32003, max: 32073, city: 'Orange Park' },
-      { min: 32081, max: 32082, city: 'Ponte Vedra' },
-      { min: 32601, max: 32614, city: 'Gainesville' },
     ];
 
     zipChecker.addEventListener('submit', function(e) {
