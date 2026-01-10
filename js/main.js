@@ -167,7 +167,6 @@
 
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
 
       // Get form data
       const formData = new FormData(this);
@@ -198,9 +197,7 @@
       }
 
       if (isValid) {
-        // Show success message
-        showFormMessage('success', 'Thank you! We\'ll be in touch within 2 hours.');
-        this.reset();
+        // Form will be submitted to Netlify
       } else {
         showFormMessage('error', errors.join('<br>'));
       }
@@ -332,7 +329,7 @@
     chatButton.addEventListener('click', () => {
       // This would integrate with your chat service (Intercom, Drift, etc.)
       // For now, we'll show a simple alert
-      alert('Chat feature coming soon! For immediate assistance, call us at (555) TRASH-FL');
+      alert('Chat feature coming soon! For immediate assistance, call us at (407) 801-8823');
     });
   }
 

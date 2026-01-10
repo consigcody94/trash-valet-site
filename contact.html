@@ -96,7 +96,8 @@
         <div class="contact-form">
           <h3>Request a Quote</h3>
           <p style="color: var(--color-gray-500); margin-bottom: var(--space-6);">Fill out the form below and we'll get back to you within 2 hours.</p>
-          <form id="contactForm">
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" action="/contact.html?success=true">
+            <input type="hidden" name="form-name" value="contact">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Full Name *</label>
@@ -107,6 +108,7 @@
                 <input type="email" id="email" name="email" placeholder="you@example.com" required>
               </div>
             </div>
+            <input type="hidden" name="form-name" value="contact">
             <div class="form-row">
               <div class="form-group">
                 <label for="phone">Phone *</label>
@@ -279,5 +281,4 @@
   </button>
 
   <script src="js/main.js"></script>
-</body>
-</html>
+  <script>    // Show success message if form was submitted    if (window.location.search.includes("success=true")) {      const successMsg = document.createElement("div");      successMsg.style.cssText = "position: fixed; top: 100px; left: 50%; transform: translateX(-50%); background: #10B981; color: white; padding: 1.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 9999; font-weight: 600;";      successMsg.textContent = "✓ Message sent! We will contact you within 2 hours.";      document.body.appendChild(successMsg);      setTimeout(() => successMsg.remove(), 5000);      window.history.replaceState({}, document.title, window.location.pathname);    }  </script>
