@@ -63,46 +63,62 @@
     const unitCountValue = document.getElementById('unitCountValue');
     const frequency = document.getElementById('frequency');
     const frequencyValue = document.getElementById('frequencyValue');
-    const propertyType = document.getElementById('propertyType');
     const estimatedPrice = document.getElementById('estimatedPrice');
+    const perUnitNote = document.getElementById('perUnitNote');
 
-    // Base pricing per unit per month
-    const basePricePerUnit = 10.00;
-    const frequencyMultipliers = {
-      3: 0.90,
-      4: 0.80,
-      5: 1.00,
-      6: 1.15,
-      7: 1.20
-    };
-    const propertyMultipliers = {
-      apartment: 1.00,
-      condo: 1.05,
-      townhome: 1.10,
-      hoa: 1.20
+    // Pricing tiers per unit per month
+    const pricingTiers = {
+      3: { price: 10.00, name: 'Essential' },
+      5: { price: 12.50, name: 'Standard' },
+      7: { price: 15.00, name: 'Premium' }
     };
 
     function calculatePrice() {
       const units = parseInt(unitCount.value);
       const freq = parseInt(frequency.value);
-      const type = propertyType.value;
+      const tier = pricingTiers[freq] || pricingTiers[5];
 
-      const price = units * basePricePerUnit * frequencyMultipliers[freq] * propertyMultipliers[type];
+      let pricePerUnit = tier.price;
 
-      return Math.round(price);
+      // Volume discounts for 200+ units (up to 15%)
+      let discount = 0;
+      if (units >= 400) {
+        discount = 0.15; // 15% off
+      } else if (units >= 300) {
+        discount = 0.12; // 12% off
+      } else if (units >= 200) {
+        discount = 0.10; // 10% off
+      }
+
+      pricePerUnit = pricePerUnit * (1 - discount);
+      const totalPrice = units * pricePerUnit;
+
+      return {
+        total: Math.round(totalPrice),
+        perUnit: pricePerUnit.toFixed(2),
+        tierName: tier.name,
+        discount: discount
+      };
     }
 
     function updateDisplay() {
       unitCountValue.textContent = unitCount.value;
-      frequencyValue.textContent = frequency.value + ' nights/week';
+      const freq = parseInt(frequency.value);
+      const tier = pricingTiers[freq] || pricingTiers[5];
+      frequencyValue.textContent = freq + ' nights/week (' + tier.name + ')';
 
-      const price = calculatePrice();
-      estimatedPrice.textContent = price.toLocaleString();
+      const result = calculatePrice();
+      estimatedPrice.textContent = result.total.toLocaleString();
+
+      let noteText = 'That\'s just $' + result.perUnit + ' per unit/month';
+      if (result.discount > 0) {
+        noteText += ' (includes ' + (result.discount * 100) + '% volume discount!)';
+      }
+      if (perUnitNote) perUnitNote.textContent = noteText;
     }
 
     unitCount.addEventListener('input', updateDisplay);
     frequency.addEventListener('input', updateDisplay);
-    propertyType.addEventListener('change', updateDisplay);
 
     // Initial calculation
     updateDisplay();

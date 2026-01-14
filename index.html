@@ -402,9 +402,60 @@
     <div class="container">
       <div class="section__header">
         <span class="section__eyebrow">Transparent Pricing</span>
-        <h2 class="section__title">Get Your Instant Quote</h2>
-        <p class="section__subtitle">No hidden fees. No surprises. Know exactly what you'll pay.</p>
+        <h2 class="section__title">Simple, Honest Pricing</h2>
+        <p class="section__subtitle">No hidden fees. No surprises. Volume discounts up to 15% for 200+ units!</p>
       </div>
+
+      <!-- Pricing Tiers -->
+      <div class="pricing__tiers" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+        <div class="pricing-card" style="background: white; border-radius: 1rem; padding: 2rem; text-align: center; border: 2px solid var(--color-gray-200); transition: all 0.3s;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-gray-800);">Essential</h3>
+          <div style="font-size: 3rem; font-weight: 800; color: var(--color-primary);">$10<span style="font-size: 1rem; font-weight: 400; color: var(--color-gray-500);">/unit/month</span></div>
+          <p style="color: var(--color-gray-500); margin: 1rem 0;">3 nights per week</p>
+          <ul style="text-align: left; margin: 1.5rem 0; list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Sun, Tue, Thu pickup</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Bins included</li>
+            <li style="padding: 0.5rem 0;">Photo confirmation</li>
+          </ul>
+          <a href="contact.html" class="btn btn--outline" style="width: 100%;">Get Quote</a>
+        </div>
+
+        <div class="pricing-card" style="background: white; border-radius: 1rem; padding: 2rem; text-align: center; border: 2px solid var(--color-primary); transform: scale(1.05); box-shadow: 0 10px 40px rgba(10, 117, 88, 0.2);">
+          <div style="background: var(--color-primary); color: white; padding: 0.25rem 1rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">Most Popular</div>
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-gray-800);">Standard</h3>
+          <div style="font-size: 3rem; font-weight: 800; color: var(--color-primary);">$12.50<span style="font-size: 1rem; font-weight: 400; color: var(--color-gray-500);">/unit/month</span></div>
+          <p style="color: var(--color-gray-500); margin: 1rem 0;">5 nights per week</p>
+          <ul style="text-align: left; margin: 1.5rem 0; list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Sun - Thu pickup</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Bins included</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Photo confirmation</li>
+            <li style="padding: 0.5rem 0;">Recycling included</li>
+          </ul>
+          <a href="contact.html" class="btn btn--primary" style="width: 100%;">Get Quote</a>
+        </div>
+
+        <div class="pricing-card" style="background: white; border-radius: 1rem; padding: 2rem; text-align: center; border: 2px solid var(--color-gray-200); transition: all 0.3s;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-gray-800);">Premium</h3>
+          <div style="font-size: 3rem; font-weight: 800; color: var(--color-primary);">$15<span style="font-size: 1rem; font-weight: 400; color: var(--color-gray-500);">/unit/month</span></div>
+          <p style="color: var(--color-gray-500); margin: 1rem 0;">7 nights per week + extras</p>
+          <ul style="text-align: left; margin: 1.5rem 0; list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Every night pickup</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Premium bins included</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Photo confirmation</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--color-gray-100);">Recycling included</li>
+            <li style="padding: 0.5rem 0;">Priority support</li>
+          </ul>
+          <a href="contact.html" class="btn btn--outline" style="width: 100%;">Get Quote</a>
+        </div>
+      </div>
+
+      <style>
+        @media (max-width: 900px) {
+          .pricing__tiers { grid-template-columns: 1fr !important; }
+          .pricing__tiers .pricing-card:nth-child(2) { transform: none !important; order: -1; }
+        }
+      </style>
+
       <div class="pricing__calculator">
         <div class="calculator__header">
           <h3 class="calculator__title">Quick Quote Calculator</h3>
@@ -416,28 +467,19 @@
               <label for="unitCount">Number of Units</label>
               <span class="range-value" id="unitCountValue">50</span>
             </div>
-            <input type="range" id="unitCount" class="range-input" min="10" max="3000" value="50" step="10">
+            <input type="range" id="unitCount" class="range-input" min="10" max="500" value="50" step="10">
           </div>
           <div class="form-group range-group">
             <div class="range-header">
               <label for="frequency">Pickup Frequency</label>
-              <span class="range-value" id="frequencyValue">5 nights/week</span>
+              <span class="range-value" id="frequencyValue">5 nights/week (Standard)</span>
             </div>
-            <input type="range" id="frequency" class="range-input" min="3" max="7" value="5" step="1">
-          </div>
-          <div class="form-group">
-            <label for="propertyType">Property Type</label>
-            <select id="propertyType">
-              <option value="apartment">Apartment Complex</option>
-              <option value="condo">Condominium</option>
-              <option value="townhome">Townhome Community</option>
-              <option value="hoa">HOA / Single Family</option>
-            </select>
+            <input type="range" id="frequency" class="range-input" min="3" max="7" value="5" step="2">
           </div>
           <div class="calculator__result">
             <div class="result__label">Estimated Monthly Cost</div>
             <div class="result__price">$<span id="estimatedPrice">625</span><span>/month</span></div>
-            <p class="result__note">That's just $12.50 per unit/month</p>
+            <p class="result__note" id="perUnitNote">That's just $12.50 per unit/month</p>
           </div>
           <div class="calculator__cta">
             <a href="contact.html" class="btn btn--primary btn--large">Get Exact Quote</a>
