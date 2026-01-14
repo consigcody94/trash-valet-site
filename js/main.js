@@ -196,11 +196,11 @@
         isValid = false;
       }
 
-      if (isValid) {
-        // Form will be submitted to Netlify
-      } else {
+      if (!isValid) {
+        e.preventDefault();
         showFormMessage('error', errors.join('<br>'));
       }
+      // If valid, form submits normally to Netlify
     });
   }
 
