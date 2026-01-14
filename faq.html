@@ -1082,18 +1082,23 @@
       if (searchClear) searchClear.addEventListener('click', clearSearch);
       if (clearSearchBtn) clearSearchBtn.addEventListener('click', clearSearch);
 
-      // FAQ Accordion
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-item__question');
-        if (question) {
-          question.addEventListener('click', (e) => {
-            e.preventDefault();
-            const isActive = item.classList.contains('active');
-            faqItems.forEach(other => other.classList.remove('active'));
+      // FAQ Accordion - using event delegation for reliability
+      document.addEventListener('click', function(e) {
+        const questionBtn = e.target.closest('.faq-item__question');
+        if (questionBtn) {
+          e.preventDefault();
+          const faqItem = questionBtn.closest('.faq-item');
+          if (faqItem) {
+            const isActive = faqItem.classList.contains('active');
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+              item.classList.remove('active');
+            });
+            // Open clicked one if it wasn't already open
             if (!isActive) {
-              item.classList.add('active');
+              faqItem.classList.add('active');
             }
-          });
+          }
         }
       });
 
